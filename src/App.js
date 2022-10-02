@@ -14,7 +14,6 @@ function App() {
 
       <section>
         <article>
-
         </article>
       </section>
     </>

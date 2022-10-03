@@ -1,0 +1,50 @@
+:root {
+
+	--color-bg-color: #37474f;
+	--color-fg-color: #263238;
+	
+}
+
+.navbar {
+    width: 100vw;
+    height: 50px;
+    border: none;
+    color: white;
+}
+
+.navbar .list-head {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-bg-color);
+    width: 100%;
+    height: 50px;
+    list-style: none;
+}
+
+.navbar .list-head > li {
+    padding: 10px;
+}
+
+.navbar .list-head > li:first-child {
+    margin-right: 40px;
+}
+
+.navbar .list-head > li:last-child {
+    margin-left: auto;
+}
+
+.navbar .list-head .search button {
+    margin-left: 8px;
+} 
+
+.navbar .list-head li:nth-child(2) {
+    width: 50%;
+
+}
+
+.navbar .list-head .more {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    /* outline: 2px solid red; */
+}

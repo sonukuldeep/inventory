@@ -1,70 +1,51 @@
-/* Toggle Styles */
+:root {
 
-#viewport {
-	padding-left: 250px;
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
-  }
-  
-  #content {
-	width: 100%;
-	position: relative;
-	margin-right: 0;
-  }
-  
-  /* Sidebar Styles */
-  
-  #sidebar {
-	z-index: 1000;
-	position: fixed;
-	left: 250px;
-	width: 250px;
-	height: 100%;
-	margin-left: -250px;
-	overflow-y: auto;
-	background: #37474F;
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
-  }
-  
-  #sidebar header {
-	background-color: #263238;
-	font-size: 20px;
-	line-height: 52px;
-	text-align: center;
-  }
-  
-  #sidebar header a {
-	color: #fff;
-	display: block;
-	text-decoration: none;
-  }
-  
-  #sidebar header a:hover {
-	color: #fff;
-  }
-  
-  #sidebar .nav{
+	--color-bg-color: #37474f;
+	--color-fg-color: #263238;
 	
-  }
-  
-  #sidebar .nav a{
-	background: none;
-	border-bottom: 1px solid #455A64;
-	color: #CFD8DC;
-	font-size: 14px;
-	padding: 16px 24px;
-  }
-  
-  #sidebar .nav a:hover{
-	background: none;
-	color: #ECEFF1;
-  }
-  
-  #sidebar .nav a i{
-	margin-right: 16px;
-  }
+}
+
+.sidebar {
+	width: 10%;
+	min-width: fit-content;
+	height: calc(100vh - 58px);
+	background-color: var(--color-bg-color);
+	position: absolute;
+	top: 58px;
+}
+
+.sidebar .list-head {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width:100%;
+	overflow: hidden;
+	height: 100%;
+}
+
+.sidebar .list-head li {
+	padding: 10px 10px;
+	width: 100%;
+	transition: color 0.3s;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+	color: #fff;
+}
+
+.sidebar .list-head li:first-child {
+	border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidebar .list-head li:hover {
+	background-color: var(--color-fg-color);
+	color: skyblue;
+
+}
+
+.sidebar .list-head li:last-child {
+	margin-top: auto;
+}

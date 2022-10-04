@@ -1,17 +1,22 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 const getDataFromDatabase = { 1: 100, 2: 200, 3: 20 }
-const Dashboard = (props) => {
+const Dashboard = ({ trigger }) => {
+
     //css
-    const [style,setStyle] = useState({ 'display': 'grid', 'gridTemplateColumns': '1fr 1fr 1fr', 'width': '87%', 'marginLeft': '180px', 'marginTop': '50px', 'gap': '10px' })
-   
-    
+    const [style, setStyle] = useState({ 'display': 'grid', 'gridTemplateColumns': '1fr 1fr 1fr', 'width': '87%', 'marginLeft': '180px', 'marginTop': '50px', 'gap': '10px' })
+
     useEffect(() => {
-        setStyle({...style,'display': 'hidden'}) 
-        console.log(props.display,style)
-    }, [props.display])
-    
+        let display;
+        if (trigger.dashboard === true)
+            display = 'grid'
+        else
+            display = 'none'
+        setStyle({ ...style, 'display': display})
+        // console.log(trigger,style)
+    }, [trigger.dashboard])
+
     return (
         <>
             <div style={style}>
@@ -66,7 +71,7 @@ const Dashboard = (props) => {
                 </div>
             </div>
 
-            <div className="container" style={{ 'marginLeft': '180px' }}>
+            <div className="container" style={{ 'marginLeft': '180px','display': style.display }}>
                 <h3>Last few sales</h3>
 
                 <table className="table" style={{ 'color': '#fff', 'backgroundColor': '#37474f' }}>

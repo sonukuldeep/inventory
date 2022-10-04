@@ -46,5 +46,29 @@
     display: flex;
     list-style: none;
     justify-content: space-evenly;
-    /* outline: 2px solid red; */
+    height: 50px;
+}
+
+.navbar .list-head .more div,.navbar .list-head .search {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.3s; 
+}
+
+.navbar .list-head .more div:hover {
+    /* background-color: var(--color-fg-color); */
+    color: skyblue;
+}
+
+.navbar .list-head .search input {
+    height: 35px;
+    width: 250px;
+}
+
+.navbar .list-head .search button {
+    width: 100px;
 }

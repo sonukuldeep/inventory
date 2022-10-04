@@ -12,9 +12,9 @@ const Navbar = () => {
           <li>Shop <span>X</span> </li>
           <li>
             <div className="more">
-                <div>Home</div>
-                <div>Links</div>
-                <div>History</div>
+                <div><FontAwesomeIcon icon={faHouse}/> Home</div>
+                <div><FontAwesomeIcon icon={faLink}/> Links</div>
+                <div><FontAwesomeIcon icon={faBook} /> History</div>
             </div>
           </li>
           <li><div className="search">

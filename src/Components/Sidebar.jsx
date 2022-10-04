@@ -18,7 +18,7 @@ const Sidebar = () => {
                 <li>Log out</li>
             </ul>
         </div>
-        <p style={{marginLeft:'200px'}}>hello</p>
+        {/* <p style={{marginLeft:'200px'}}>hello</p> */}
         </>
     )
 }

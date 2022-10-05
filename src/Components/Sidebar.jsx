@@ -6,20 +6,20 @@ import { faSquareCaretDown } from '@fortawesome/free-regular-svg-icons'
 
 
 
-const Sidebar = ({setTrigger,trigger}) => {
+const Sidebar = ({setTrigger,trigger,initialState}) => {
     const triggerBtn = (btn) => {
-        setTrigger({...trigger,'dashboard': !trigger.dashboard })
-        // console.log(trigger)
+        setTrigger({...initialState, ...btn})
+        // console.log(btn)
     }
 
     return (
         <>
         <div className="sidebar">
             <ul className="list-head" style={{userSelect: 'none'}}>
-                <li onClick={()=>{triggerBtn(trigger)}}>Dashboard</li>
-                <li>Products</li>
-                <li>Critical</li>
-                <li>Customers</li>
+                <li onClick={()=>{triggerBtn({'dashboard' :true})}}>Dashboard</li>
+                <li onClick={()=>{triggerBtn({'products' :true})}}>Products</li>
+                <li onClick={()=>{triggerBtn({'critical' :true})}}>Critical</li>
+                <li onClick={()=>{triggerBtn({'customers' :true})}}>Customers</li>
                 <li>Log out</li>
             </ul>
         </div>

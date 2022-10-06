@@ -1,20 +1,21 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect,useContext } from 'react'
+import DataContext from '../Context/DataContext'
 
 const getDataFromDatabase = { 1: 100, 2: 200, 3: 20 }
-const Dashboard = ({ trigger }) => {
+const Dashboard = () => {
 
+    const trigger = useContext(DataContext).trigger
     //css
     const [style, setStyle] = useState({ 'display': 'grid', 'gridTemplateColumns': '1fr 1fr 1fr', 'width': '87%', 'marginLeft': '180px', 'marginTop': '50px', 'gap': '10px' })
-
+    
     useEffect(() => {
         let display;
         if (trigger.dashboard === true)
-            display = 'grid'
+        display = 'grid'
         else
-            display = 'none'
+        display = 'none'
         setStyle({ ...style, 'display': display})
-        // console.log(trigger,style)
     }, [trigger.dashboard])
 
     return (

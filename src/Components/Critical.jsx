@@ -1,7 +1,9 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect,useContext } from 'react'
+import DataContext from '../Context/DataContext'
 
-const Critical = ({ trigger }) => {
+const Critical = () => {
+    const trigger = useContext(DataContext).trigger
 
     const [style, setStyle] = useState({ 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px' })
 

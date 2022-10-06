@@ -1,15 +1,19 @@
 import './Sidebar.css'
-import React from 'react'
+import React ,{useContext} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGauge, faFolderOpen, faGripVertical, faPerson, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { faSquareCaretDown } from '@fortawesome/free-regular-svg-icons'
+import DataContext from '../Context/DataContext'
 
 
+const Sidebar = () => {
+    const initialState = useContext(DataContext).initialState
+    const setTrigger = useContext(DataContext).setTrigger
+    
 
-const Sidebar = ({setTrigger,trigger,initialState}) => {
     const triggerBtn = (btn) => {
         setTrigger({...initialState, ...btn})
-        // console.log(btn)
+        // console.log(data)
     }
 
     return (

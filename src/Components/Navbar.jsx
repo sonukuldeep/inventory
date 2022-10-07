@@ -19,7 +19,7 @@ const Navbar = () => {
           </li>
           <li><div className="search">
             <input type="text" placeholder='search' />
-            <button type='button' className='btn btn-outline-primary'>Search</button>
+            <button type='button' className='btn btn-primary'>Search</button>
           </div></li>
         </ul>
       </div>

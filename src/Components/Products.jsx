@@ -19,19 +19,35 @@ const Products = () => {
         setStyle({ ...style, 'display': display })
     }, [trigger.products])
 
+    function checkDuplicateEntry(entry) {
+        let result = false
+        products.forEach((item) => {
+            if(result) return
+            result = Object.values(item).includes(Number(entry.id)) || Object.values(item).includes(entry.name)
+        })
+        return result
+       
+        
+    }
+
     function formSubmit(e) {
         e.preventDefault()
-        console.log(e.target.elements.id.value)
-        console.log(e.target.elements.quantity.value)
-        console.log(e.target.elements.product_name.value)
-        console.log(e.target.elements.available_stock.value)
+        // console.log(e.target)
+        // console.log(e.target[0].value)
+        let id = e.target.elements.id.value
+        let quantity = e.target.elements.quantity.value
+        let product_name = e.target.elements.product_name.value
+        let available_stock = e.target.elements.available_stock.value
+        let newEntry = { 'id': id, 'number': quantity, 'name': product_name, 'currentStock': available_stock, 'sold': 0 }
+        checkDuplicateEntry(newEntry) ? alert('Product already exist') : setProducts([...products, newEntry])
+
     }
 
     return (
         <div className='container' style={style}>
 
-            <button type='button' className='btn btn-warning' onClick={() => {setEnableDisable(!enableForm);}}>{enableForm ? 'Close' : 'Open'}</button>
-            <form action="#" id="product-form" style={enableForm ? {'display': 'block'} : {'display': 'none'} }  onSubmit={(e) => { formSubmit(e) }}>
+            <button type='button' className='btn btn-warning' onClick={() => { setEnableDisable(!enableForm); }}>{enableForm ? 'Close' : 'Add more products'}</button>
+            <form action="#" id="product-form" style={enableForm ? { 'display': 'block' } : { 'display': 'none' }} onSubmit={(e) => { formSubmit(e) }}>
                 <div className="row mb-3">
                     <label
                         htmlFor="colFormLabel"
@@ -41,8 +57,8 @@ const Products = () => {
                     </label>
                     <div className="col-sm-10">
                         <input
-                            type="text"
-                            inputMode="numeric"
+                            type="number"
+                            // inputMode="numeric"
                             className="form-control"
                             name="id"
                             id="colFormLabel"
@@ -99,17 +115,17 @@ const Products = () => {
                         />
                     </div>
                 </div>
-                <input type='submit' className='btn btn-success'/>
+                <input type='submit' className='btn btn-success' />
                 {/* <button type='button' className='btn btn-success' onClick={(e) => { formSubmit(e) }}>Submit</button> */}
 
             </form>
 
 
-            <table class="table table-striped" style={{marginTop: '10px', borderTop: '1px solid rgba(0,0,0,0.5)'}}>
+            <table class="table table-striped" style={{ marginTop: '10px', borderTop: '1px solid rgba(0,0,0,0.5)' }}>
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Number</th>
+                        <th scope="col">Quantiy</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Current Stock</th>
                         <th scope="col">Sold</th>

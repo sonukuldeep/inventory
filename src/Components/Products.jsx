@@ -20,27 +20,44 @@ const Products = () => {
     }, [trigger.products])
 
     function checkDuplicateEntry(entry) {
-        let result = false
-        products.forEach((item) => {
-            if(result) return
-            result = Object.values(item).includes(Number(entry.id)) || Object.values(item).includes(entry.name)
+        let indexNegativeIfNoDuplicateFound = -1
+        products.forEach((item,index) => {
+            if(indexNegativeIfNoDuplicateFound !== -1) return
+            if(Object.values(item).includes(Number(entry.id)) || Object.values(item).includes(entry.name)){
+                indexNegativeIfNoDuplicateFound = index
+            }
+            
         })
-        return result
-       
-        
+        return indexNegativeIfNoDuplicateFound
+    }
+
+    function addProductsToStock(entry){
+        const index = checkDuplicateEntry(entry)
+        let product
+        if(index !== -1){
+            product = products[index]
+            product.number = Number(product.number) + Number(entry.number)
+            const updatedProductlist = [...products]
+            updatedProductlist[index] = product
+          setProducts(updatedProductlist)
+
+        }
+        else
+        setProducts([...products,entry])
     }
 
     function formSubmit(e) {
         e.preventDefault()
-        // console.log(e.target)
-        // console.log(e.target[0].value)
         let id = e.target.elements.id.value
         let quantity = e.target.elements.quantity.value
         let product_name = e.target.elements.product_name.value
         let available_stock = e.target.elements.available_stock.value
         let newEntry = { 'id': id, 'number': quantity, 'name': product_name, 'currentStock': available_stock, 'sold': 0 }
-        checkDuplicateEntry(newEntry) ? alert('Product already exist') : setProducts([...products, newEntry])
 
+        addProductsToStock(newEntry)
+        for (let i = 0; i < 4; i++){
+            e.target[i].value = ""
+        }
     }
 
     return (
@@ -63,6 +80,7 @@ const Products = () => {
                             name="id"
                             id="colFormLabel"
                             placeholder="Enter product ID"
+                            required
                         />
                     </div>
                 </div>
@@ -75,12 +93,12 @@ const Products = () => {
                     </label>
                     <div className="col-sm-10">
                         <input
-                            type="text"
-                            inputMode="numeric"
+                            type="number"
                             className="form-control"
                             name="quantity"
                             id="colFormLabel"
                             placeholder="Enter Quantity"
+                            required
                         />
                     </div>
                 </div>

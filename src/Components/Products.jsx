@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import DataContext from '../Context/DataContext'
 import DisplayList from './DisplayList'
+import icon from '../Assets/Image/icon.gif'
 
 const Products = () => {
     const data = useContext(DataContext)
@@ -60,7 +61,7 @@ const Products = () => {
             for (let i = 0; i < 4; i++) {
                 e.target[i].value = ""
             }
-        }else{
+        } else {
             // e.preventDefault()
             let id = products[editId.id].id
             let quantity = e.target.elements.quantity.value
@@ -71,7 +72,7 @@ const Products = () => {
             const updatedProductlist = [...products]
             updatedProductlist[editId.id] = product
             setProducts(updatedProductlist)
-            // console.log(updatedProductlist)
+            closeEditBox()
         }
 
     }
@@ -80,10 +81,23 @@ const Products = () => {
         setEditId({ 'id': Number(id) - 1, 'display': 'block' }) //since products in an array therefore using id -1
     }
 
+    function closeEditBox() {
+        let img = document.createElement('img')
+        img.src = icon
+        img.setAttribute('style', 'width: 100px; position: absolute; top: 50%; left: 40%; transform: translate(-50%,-50%)')
+        img.setAttribute('class', 'checkmark')
+        document.getElementById('edit-form').appendChild(img)
+        setTimeout(() => {
+            setEditId({ 'id': 0, 'display': 'none' })
+            document.getElementById('edit-form').removeChild(document.querySelector('.checkmark'))
+
+        }, 2000);
+    }
+
     return (
         <div className='container' style={style}>
 
-            <button type='button' className='btn btn-warning' onClick={() => { setEnableDisable(!enableForm); }}>{enableForm ? 'Close' : 'Add more products'}</button>
+            <button type='button' style={(editId['display'] === 'block') ? {'display': 'none'} : {'display': 'block'} } className='btn btn-warning' onClick={() => { setEnableDisable(!enableForm); }}>{enableForm ? 'Close' : 'Add more products'}</button>
             <form action="#" id="product-form" style={enableForm ? { 'display': 'block' } : { 'display': 'none' }} onSubmit={(e) => { formSubmit(e) }}>
                 <div className="row mb-3">
                     <label
@@ -160,7 +174,8 @@ const Products = () => {
             </form>
 
             {/* edit product */}
-            <form action="#" id="product-form" style={{ 'display': editId.display }} onSubmit={(e) => { formSubmit(e, 'edit') }}>
+            <form action="#" id="edit-form" style={{ 'display': editId.display, position: 'relative' }} onSubmit={(e) => { formSubmit(e, 'edit') }}>
+                {/* <img src={icon} alt="" /> */}
                 <div className="row mb-3">
                     <label
                         htmlFor="colFormLabel"
@@ -245,7 +260,7 @@ const Products = () => {
                     </div>
                 </div>
                 <button type='submit' className='btn btn-success my-2' >Save</button>
-                <button type='button' className='btn btn-warning my-2 mx-2' onClick={() => { setEditId({ 'display': 'none' }) }}>Cancel</button>
+                <button type='button' className='btn btn-warning my-2 mx-2' onClick={() => { setEditId({ 'id': 0,'display': 'none' }) }}>Cancel{ }</button>
                 {/* <button type='button' className='btn btn-success' onClick={(e) => { formSubmit(e) }}>Submit</button> */}
 
             </form>

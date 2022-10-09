@@ -7,9 +7,9 @@ const DataState = (props) => {
     const navbarInitialState = { 'home': false, 'links': false, 'history': false, 'dashboard': false, 'products': false, 'critical': false, 'customers': false }
     const [btnTrigger, setBtnTrigger] = useState({ ...navbarInitialState, 'dashboard': true })
     const [products, setProducts] = useState(
-        [{'id': 1,'number': 15, 'name':'baby oil','currentStock': '25','sold': '5' },
-        {'id': 2,'number': 18, 'name':'biscuits','currentStock': '30','sold': '10' },
-        {'id': 3,'number': 20, 'name':'rice','currentStock': '25 bags','sold': '5 bags' }])
+        [{'id': 1,'number': 15, 'name':'baby oil','description': '50 ml bottle','sold': '5' },
+        {'id': 2,'number': 18, 'name':'biscuits','description': '20 gm pkt','sold': '10' },
+        {'id': 3,'number': 20, 'name':'rice','description': '25 kg bag','sold': '5' }])
 
         
 

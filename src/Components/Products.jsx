@@ -261,7 +261,6 @@ const Products = () => {
                 </div>
                 <button type='submit' className='btn btn-success my-2' >Save</button>
                 <button type='button' className='btn btn-warning my-2 mx-2' onClick={() => { setEditId({ 'id': 0,'display': 'none' }) }}>Cancel{ }</button>
-                {/* <button type='button' className='btn btn-success' onClick={(e) => { formSubmit(e) }}>Submit</button> */}
 
             </form>
 

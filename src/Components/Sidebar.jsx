@@ -21,6 +21,7 @@ const Sidebar = () => {
         <div className="sidebar">
             <ul className="list-head" style={{userSelect: 'none'}}>
                 <li onClick={()=>{triggerBtn({'dashboard' :true})}}>Dashboard</li>
+                <li onClick={()=>{triggerBtn({'orderBook' :true})}}>Order Book</li>
                 <li onClick={()=>{triggerBtn({'products' :true})}}>Products</li>
                 <li onClick={()=>{triggerBtn({'critical' :true})}}>Critical</li>
                 <li onClick={()=>{triggerBtn({'customers' :true})}}>Customers</li>

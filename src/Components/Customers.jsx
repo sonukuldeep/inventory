@@ -60,7 +60,6 @@ const Customers = () => {
                             className="form-control"
                             name="name"
                             id="colFormLabel"
-                            // value={customerData[currentIndex.id -1].name}
                             value={tempOnChangeContainer.name}
                             onChange={(e) => setTempOnChangeContainer({...tempOnChangeContainer,'name':e.target.value})}
                         />
@@ -122,7 +121,7 @@ const Customers = () => {
                 </thead>
                 <tbody>
                     {sortedCustomerData.map((item, index) => {
-                        return <CustomerList item={item} index={index} setCurrentIndex={setCurrentIndex} tempOnChangeContainer={tempOnChangeContainer} setTempOnChangeContainer={setTempOnChangeContainer}/>
+                        return <CustomerList item={item} index={index} setCurrentIndex={setCurrentIndex} setTempOnChangeContainer={setTempOnChangeContainer}/>
 
                     })}
 

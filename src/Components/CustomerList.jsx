@@ -6,13 +6,11 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 
 
-const CustomerList = ({ item, index, setCurrentIndex, setTempOnChangeContainer,tempOnChangeContainer }) => {
+const CustomerList = ({ item, index, setCurrentIndex, setTempOnChangeContainer }) => {
     
     function setListValues(){
      setCurrentIndex({'id':item.id,'display':'block'})
         setTempOnChangeContainer({'name':item.name,'due':item.due,'phone':item.phone})
-        // setTempOnChangeContainer({...tempOnChangeContainer})
-        // setTempOnChangeContainer({...tempOnChangeContainer})?
     }
 
     return (

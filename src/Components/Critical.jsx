@@ -19,7 +19,7 @@ const Critical = () => {
 
     return (
         <div className='container' style={style}>
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -43,7 +43,7 @@ const Critical = () => {
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
+                        <td colSpan="2">Larry the Bird</td>
                         <td>@twitter</td>
                     </tr>
                 </tbody>

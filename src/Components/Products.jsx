@@ -191,6 +191,7 @@ const Products = () => {
                             name="id"
                             id="colFormLabel"
                             value={products[editId.id].id}
+                            readOnly
                         />
                     </div>
                 </div>

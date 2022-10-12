@@ -108,7 +108,7 @@ const Customers = () => {
                 <button type="submit" className='btn btn-success'>Save</button>
                 <button type="button" className='btn btn-warning mx-2' onClick={()=>{closeCustomerForm()}}>Cancel</button>
             </form>
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Serial</th>

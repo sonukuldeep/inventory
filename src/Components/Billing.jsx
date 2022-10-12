@@ -8,6 +8,8 @@ const Billing = () => {
     const products = useContext(DataContext).products
     const [style, setStyle] = useState({ 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px', 'position': 'relative', 'display': 'none' })
     const spawnRowHere = useRef()
+    const [count, setCount] = useState(1)
+    const [productRow, addMoreProducts] = useState([<BillingRow products={products} count={count} setCount={setCount} close={close} />])
 
     useEffect(() => {
         if (trigger.orderBook)
@@ -18,37 +20,34 @@ const Billing = () => {
 
     }, [trigger.orderBook])
 
-    function addMoreProducts()
-    {
-        const createFormNode = document.createElement("BillingRow")
-        // createFormNode.innerHTML = "<BillingRow products={products}/>"
-        const parent = spawnRowHere.current
-        parent.append(createFormNode)
+    function close(rowIndex) {
+        const tempProductRow = productRow.filter((row,index)=> index !==rowIndex)
+        addMoreProducts(tempProductRow)
     }
 
     return (
         <div className='container' style={style}>
-            <table className='table'>
+            <table className='table table-striped'>
                 <thead>
                     <tr>
-                        <th style={{ 'width': '100px', 'text-align': 'center' }} scope="col">Serial No.</th>
-                        <th style={{ 'width': '240px', 'text-align': 'center' }} scope="col">Name of product</th>
-                        <th style={{ 'width': '150px', 'text-align': 'center' }} scope="col">HSN</th>
-                        <th style={{ 'width': '150px', 'text-align': 'center' }} scope="col">Quantity</th>
-                        <th style={{ 'width': '150px', 'text-align': 'center' }} scope="col">Price</th>
-                        <th style={{ 'width': '140px', 'text-align': 'center' }} scope="col">Taxable Value</th>
-                        <th style={{ 'width': '140px', 'text-align': 'center' }} scope="col">Tax</th>
-                        <th style={{ 'width': '140px', 'text-align': 'center' }} scope="col">Total</th>
+                        <th style={{ 'width': '100px', 'textAlign': 'center' }} scope="col">Serial No.</th>
+                        <th style={{ 'width': '240px', 'textAlign': 'center' }} scope="col">Name of product</th>
+                        <th style={{ 'width': '150px', 'textAlign': 'center' }} scope="col">HSN</th>
+                        <th style={{ 'width': '150px', 'textAlign': 'center' }} scope="col">Quantity</th>
+                        <th style={{ 'width': '150px', 'textAlign': 'center' }} scope="col">Price</th>
+                        <th style={{ 'width': '140px', 'textAlign': 'center' }} scope="col">Taxable Value</th>
+                        <th style={{ 'width': '140px', 'textAlign': 'center' }} scope="col">Tax</th>
+                        <th style={{ 'width': '140px', 'textAlign': 'center' }} scope="col">Total</th>
                     </tr>
                 </thead>
                 <tbody ref={spawnRowHere}>
-                    
-                    <BillingRow products={products}/>
-                    
- 
+
+                    {productRow.map(item => item)}
+                    {/* <BillingRow products={products}/> */}
+
                 </tbody>
             </table>
-            <button onClick={()=>addMoreProducts()}>Add More</button>
+            <button className='btn btn-outline-success' onClick={() => addMoreProducts([...productRow, <BillingRow products={products} count={count} setCount={setCount} close={close} />])}>Add More</button>
         </div>
     )
 }

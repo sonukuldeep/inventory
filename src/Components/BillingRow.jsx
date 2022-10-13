@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-const BillingRow = ({ products, count, setCount,close }) => {
+const BillingRow = ({ products, close, row, btnid }) => {
     const [total, setTotal] = useState({ 'taxableAmount': "", 'tax': "", "rate": "", 'total': "" })
     const refProductHsn = useRef()
     const refProductQuantity = useRef()
@@ -9,10 +9,7 @@ const BillingRow = ({ products, count, setCount,close }) => {
     const refProductTax = useRef()
     const refProductTotal = useRef()
 
-    useEffect(() => {
-        // console.log(count)
-        setCount(count + 1)
-    })
+    
 
     function ProductLookup(e, operation = 'default') {
         if (operation !== 'default') {
@@ -35,10 +32,16 @@ const BillingRow = ({ products, count, setCount,close }) => {
         return { 'taxableAmount': taxableAmount, 'tax': tax, 'total': total, 'rate': `(${rate})%` }
     }
 
+    function closeEvent(e){
+        close(e.target.id)
+        close(`row-${e.target.id}`)
+    }
+
+
     return (
         <>
-            <tr>
-                <td style={{ 'textAlign': 'center' }}>{count}</td>
+            <tr id={row}>
+                <td className='trackCount' style={{ 'textAlign': 'center' }}></td>
                 <td style={{ 'width': '240px' }}>
                     <select name="name" style={{ 'width': '100%' }} onChange={(e) => { ProductLookup(e,) }}>
 
@@ -51,7 +54,7 @@ const BillingRow = ({ products, count, setCount,close }) => {
                 <td style={{ 'textAlign': 'center' }} ref={refProductTaxableVal}>{total.taxableAmount}</td>
                 <td style={{ 'textAlign': 'center' }} ref={refProductTax} >{total.tax} {total.rate}</td>
                 <td style={{ 'textAlign': 'center' }} ref={refProductTotal} >{total.total}</td>
-                <button onClick={()=>{close(count-1)}}>&times;</button>
+                <button className='trackBtn' id={btnid} onClick={(e)=>{closeEvent(e)}}>&times;</button>
             </tr>
         </>
     )

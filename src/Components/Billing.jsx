@@ -8,8 +8,9 @@ const Billing = () => {
     const products = useContext(DataContext).products
     const [style, setStyle] = useState({ 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px', 'position': 'relative', 'display': 'none' })
     const spawnRowHere = useRef()
-    const [count, setCount] = useState(1)
-    const [productRow, addMoreProducts] = useState([<BillingRow products={products} count={count} setCount={setCount} close={close} />])
+    const [row, setRow] = useState("row-0")
+    const [count,setCount] = useState(0)
+    const [productRow, addMoreProducts] = useState([])
 
     useEffect(() => {
         if (trigger.orderBook)
@@ -21,9 +22,25 @@ const Billing = () => {
     }, [trigger.orderBook])
 
     function close(rowIndex) {
-        const tempProductRow = productRow.filter((row,index)=> index !==rowIndex)
-        addMoreProducts(tempProductRow)
+        console.log(rowIndex)
+        const removeRow = document.getElementById(rowIndex)
+        removeRow.remove()
     }
+    
+    function addRow(){
+        addMoreProducts([...productRow, <BillingRow products={products} close={close} row={row} btnid={count} />])
+        setRow(`row-${count}`)
+        // console.log(row.slice(3,row.length))
+    }
+    
+    useEffect(()=>{
+        setCount(count+1)
+        const trackCount = document.querySelectorAll('.trackCount')
+        const trackBtn = document.querySelectorAll('.trackBtn')
+        const trackRow = document.querySelectorAll('.trackRow')
+        trackCount.forEach((item,index)=>{item.innerText = index + 1})
+        trackBtn.forEach((btn,index)=>{btn.setAttribute("id",index)})
+    },[productRow])
 
     return (
         <div className='container' style={style}>
@@ -42,12 +59,12 @@ const Billing = () => {
                 </thead>
                 <tbody ref={spawnRowHere}>
 
-                    {productRow.map(item => item)}
+                    {productRow.map((item) => item)}
                     {/* <BillingRow products={products}/> */}
 
                 </tbody>
             </table>
-            <button className='btn btn-outline-success' onClick={() => addMoreProducts([...productRow, <BillingRow products={products} count={count} setCount={setCount} close={close} />])}>Add More</button>
+            <button className='btn btn-outline-success' onClick={() => addRow()}>Add Product</button>
         </div>
     )
 }

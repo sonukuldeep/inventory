@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-const BillingRow = ({ products, close, row, btnid }) => {
+const BillingRow = ({ products, close, id, getTotal }) => {
     const [total, setTotal] = useState({ 'taxableAmount': "", 'tax': "", "rate": "", 'total': "" })
     const refProductHsn = useRef()
     const refProductQuantity = useRef()
     const refProductPrice = useRef()
     const refProductTaxableVal = useRef()
     const refProductTax = useRef()
-    const refProductTotal = useRef()
 
     
 
@@ -23,6 +22,7 @@ const BillingRow = ({ products, close, row, btnid }) => {
             setTotal(CalculateOrder(refProductQuantity.current.value, refProductPrice.current.value, products[productIndex].rate))
         }
 
+       
     }
 
     function CalculateOrder(quantity, price, rate) {
@@ -37,10 +37,11 @@ const BillingRow = ({ products, close, row, btnid }) => {
         close(`row-${e.target.id}`)
     }
 
+    useEffect(()=>{if(total.total) getTotal()},[getTotal,total])
 
     return (
         <>
-            <tr id={row}>
+            <tr id={`row-${id}`}>
                 <td className='trackCount' style={{ 'textAlign': 'center' }}></td>
                 <td style={{ 'width': '240px' }}>
                     <select name="name" style={{ 'width': '100%' }} onChange={(e) => { ProductLookup(e,) }}>
@@ -53,8 +54,8 @@ const BillingRow = ({ products, close, row, btnid }) => {
                 <td ><input style={{ 'width': '150px' }} ref={refProductPrice} min="1" onChange={(e) => { ProductLookup(e, 'price Update') }} type="number" /></td>
                 <td style={{ 'textAlign': 'center' }} ref={refProductTaxableVal}>{total.taxableAmount}</td>
                 <td style={{ 'textAlign': 'center' }} ref={refProductTax} >{total.tax} {total.rate}</td>
-                <td style={{ 'textAlign': 'center' }} ref={refProductTotal} >{total.total}</td>
-                <button className='trackBtn' id={btnid} onClick={(e)=>{closeEvent(e)}}>&times;</button>
+                <td className='gtotal' style={{ 'textAlign': 'center' }}  >{total.total}</td>
+                <button id={id} onClick={(e)=>{closeEvent(e)}}>&times;</button>
             </tr>
         </>
     )

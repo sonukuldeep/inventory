@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import DataContext from '../Context/DataContext'
 import DisplayList from './DisplayList'
 import icon from '../Assets/Image/icon.gif'
@@ -8,18 +8,19 @@ const Products = () => {
     const trigger = data.trigger
     const products = data.products
     const setProducts = data.setProducts
-    const [style, setStyle] = useState({ 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px' })
+    const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px' }
     const [enableForm, setEnableDisable] = useState(false)
     const [editId, setEditId] = useState({ 'id': 0, 'display': 'none' })
+    // const display = 
 
-    useEffect(() => {
-        let display;
-        if (trigger.products === true)
-            display = 'block'
-        else
-            display = 'none'
-        setStyle({ ...style, 'display': display })
-    }, [trigger.products])
+    // useEffect(() => {
+    //     let display;
+    //     if (trigger.products === true)
+    //         display = 'block'
+    //     else
+    //         display = 'none'
+    //     setStyle({ ...style, 'display': display })
+    // }, [trigger.products])
 
     function checkDuplicateEntry(entry) {
         let indexNegativeIfNoDuplicateFound = -1
@@ -95,7 +96,7 @@ const Products = () => {
     }
 
     return (
-        <div className='container' style={style}>
+        <div className='container' style={{...style, 'display': (trigger.products) ? 'block' : 'none'}}>
 
             <button type='button' style={(editId['display'] === 'block') ? {'display': 'none'} : {'display': 'block'} } className='btn btn-warning' onClick={() => { setEnableDisable(!enableForm); }}>{enableForm ? 'Close' : 'Add more products'}</button>
             <form action="#" id="product-form" style={enableForm ? { 'display': 'block' } : { 'display': 'none' }} onSubmit={(e) => { formSubmit(e) }}>
@@ -169,7 +170,6 @@ const Products = () => {
                 </div>
                 <button type='submit' className='btn btn-success my-2' >Submit</button>
 
-                {/* <button type='button' className='btn btn-success' onClick={(e) => { formSubmit(e) }}>Submit</button> */}
 
             </form>
 
@@ -278,7 +278,7 @@ const Products = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((item, index) => { return <DisplayList item={item} index={index} edit={editPopup} /> })}
+                    {products.map((item, index) => { return <DisplayList key={index} item={item} index={index} edit={editPopup} /> })}
 
                 </tbody>
             </table>

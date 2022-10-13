@@ -6,44 +6,41 @@ import BillingRow from './BillingRow'
 const Billing = () => {
     const trigger = useContext(DataContext).trigger
     const products = useContext(DataContext).products
-    const [style, setStyle] = useState({ 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px', 'position': 'relative', 'display': 'none' })
+    const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px', 'position': 'relative', 'display': 'none' }
     const spawnRowHere = useRef()
-    const [row, setRow] = useState("row-0")
     const [count,setCount] = useState(0)
     const [productRow, addMoreProducts] = useState([])
+    const refgtotal = useRef()
 
-    useEffect(() => {
-        if (trigger.orderBook)
-            setStyle({ ...style, 'display': 'block' })
-        else
-            setStyle({ ...style, 'display': 'none' })
+    const getTotal = () => {
+        const grandTotal = document.querySelectorAll('.gtotal')
+        let gtotal = 0
+        grandTotal.forEach(item=>{gtotal += parseFloat(item.innerText)})
+        refgtotal.current.innerText = "Grand total:- " + gtotal.toFixed(2) + "/-" 
 
+    }
 
-    }, [trigger.orderBook])
 
     function close(rowIndex) {
-        console.log(rowIndex)
         const removeRow = document.getElementById(rowIndex)
         removeRow.remove()
+        setCount(count+1)
+
     }
     
     function addRow(){
-        addMoreProducts([...productRow, <BillingRow products={products} close={close} row={row} btnid={count} />])
-        setRow(`row-${count}`)
-        // console.log(row.slice(3,row.length))
+        addMoreProducts([...productRow, <BillingRow products={products} close={close} id={count} getTotal={getTotal}/>])
+        setCount(count+1)
     }
     
     useEffect(()=>{
-        setCount(count+1)
         const trackCount = document.querySelectorAll('.trackCount')
-        const trackBtn = document.querySelectorAll('.trackBtn')
-        const trackRow = document.querySelectorAll('.trackRow')
         trackCount.forEach((item,index)=>{item.innerText = index + 1})
-        trackBtn.forEach((btn,index)=>{btn.setAttribute("id",index)})
-    },[productRow])
+    },[count])
+    
 
     return (
-        <div className='container' style={style}>
+        <div className='container' style={{...style,'display': (trigger.orderBook) ? 'block' : 'none'}}>
             <table className='table table-striped'>
                 <thead>
                     <tr>
@@ -60,11 +57,11 @@ const Billing = () => {
                 <tbody ref={spawnRowHere}>
 
                     {productRow.map((item) => item)}
-                    {/* <BillingRow products={products}/> */}
 
                 </tbody>
             </table>
             <button className='btn btn-outline-success' onClick={() => addRow()}>Add Product</button>
+            <div style={{position: "absolute",right:"100px",fontSize:"1.2rem",fontWeight:"bolder"}} ref={refgtotal}></div>
         </div>
     )
 }

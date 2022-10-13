@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect, useContext,useRef } from 'react'
+import { useState, useContext,useRef } from 'react'
 import DataContext from '../Context/DataContext'
 import CustomerList from './CustomerList'
 import icon from '../Assets/Image/icon.gif'
@@ -8,22 +8,12 @@ const Customers = () => {
     const trigger = useContext(DataContext).trigger
     const customerData = useContext(DataContext).customerData
     const setCustomerData = useContext(DataContext).setCustomerData
-    const [style, setStyle] = useState({ 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px','position': 'relative' })
+    const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px','position': 'relative' }
     const sortedCustomerData = [...customerData].sort(function (a, b) { return a.due < b.due })
     const [currentIndex, setCurrentIndex] = useState({'id': 1 , 'display': 'none'})
     const [tempOnChangeContainer, setTempOnChangeContainer] = useState({'name':'','due':'','phone': ''})
     const btnRef = useRef(null)
 
-    useEffect(() => {
-        let display;
-        if (trigger.customers === true)
-            display = 'block'
-        else
-            display = 'none'
-        setStyle({ ...style, 'display': display })
-        // console.log(trigger,style)
-
-    }, [trigger.customers])
 
     function editCustomerEntry(e) {
         e.preventDefault();
@@ -43,7 +33,7 @@ const Customers = () => {
 
     return (
 
-        <div className='container' style={style}>
+        <div className='container' style={{...style,'display': (trigger.customers) ? 'block' : 'none'}}>
             <img ref={btnRef} style={{'display': 'none','position':'absolute'}} src={icon} alt="" />
             <form action="#" style={{'display':currentIndex['display']}} onSubmit={(e) => { editCustomerEntry(e) }}>
                 <div className="row mb-3">
@@ -121,7 +111,7 @@ const Customers = () => {
                 </thead>
                 <tbody>
                     {sortedCustomerData.map((item, index) => {
-                        return <CustomerList item={item} index={index} setCurrentIndex={setCurrentIndex} setTempOnChangeContainer={setTempOnChangeContainer}/>
+                        return <CustomerList key={index} item={item} index={index} setCurrentIndex={setCurrentIndex} setTempOnChangeContainer={setTempOnChangeContainer}/>
 
                     })}
 

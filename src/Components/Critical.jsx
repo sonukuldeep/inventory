@@ -9,7 +9,7 @@ const Critical = () => {
 
     return (
         <div className='container' style={{...style,'display': trigger.critical ? 'block': 'none'}}>
-            <table className="table">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

@@ -1,8 +1,7 @@
 import './Navbar.css';
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faLink, faBook } from '@fortawesome/free-solid-svg-icons'
-import { faSquareCaretDown } from '@fortawesome/free-regular-svg-icons'
+import { faHouse, faLink, faBookmark } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
   return (
@@ -14,7 +13,7 @@ const Navbar = () => {
             <div className="more">
                 <div><FontAwesomeIcon icon={faHouse}/> <span className='px-1'>Home</span></div>
                 <div><FontAwesomeIcon icon={faLink}/> <span className='px-1'>Links</span></div>
-                <div><FontAwesomeIcon icon={faBook} /> <span className='px-1'>History</span></div>
+                <div><FontAwesomeIcon icon={faBookmark} /> <span className='px-1'>History</span></div>
             </div>
           </li>
           <li><div className="search">

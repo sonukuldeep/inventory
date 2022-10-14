@@ -7,6 +7,7 @@ import Billing from './Components/Billing';
 import Products from './Components/Products';
 import Critical from './Components/Critical';
 import Customers from './Components/Customers';
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
 
@@ -21,14 +22,18 @@ function App() {
         </header>
         <section>
           <article>
-            <Dashboard />
-            <Billing />
-            <Products />
-            <Critical />
-            <Customers />
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/billing" element={<Billing />} /> //order book
+              <Route path="/products" element={<Products />} />
+              <Route path="/critical" element={<Critical />} />
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/logout" element={<h1 style={{position: 'absolute', top: '50%', left: '50%', transform:'translate(-50%,-50%)'}}>Thanks for visiting</h1>} />
+            </Routes>
           </article>
         </section>
       </DataState>
+
     </>
   );
 }

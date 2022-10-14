@@ -4,7 +4,7 @@ import DataContext from "./DataContext";
 
 const DataState = (props) => {
 
-    const navbarInitialState = { 'home': false, 'links': false, 'history': false, 'dashboard': false, 'orderBook': false, 'products': false, 'critical': false, 'customers': false }
+    const navbarInitialState = { 'home': false, 'links': false, 'history': false, 'dashboard': false, 'orderBook': true, 'products': true, 'critical': true, 'customers': true }
     const [btnTrigger, setBtnTrigger] = useState({ ...navbarInitialState, 'dashboard': true })
     const [products, setProducts] = useState(
         [{ 'id': 1, 'number': 15, 'name': 'baby oil', 'hsn': 1504, 'price': '50','rate':5, 'description': '50 ml bottle', 'sold': '5' },

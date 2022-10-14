@@ -1,24 +1,14 @@
 import React from 'react'
-import { useState, useEffect,useContext } from 'react'
+import { useContext } from 'react'
 import DataContext from '../Context/DataContext'
 
 const Critical = () => {
     const trigger = useContext(DataContext).trigger
 
-    const [style, setStyle] = useState({ 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px' })
-
-    useEffect(() => {
-        let display;
-        if (trigger.critical === true)
-            display = 'block'
-        else
-            display = 'none'
-        setStyle({ ...style, 'display': display })
-        // console.log(trigger,style)
-    }, [trigger.critical])
+    const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px' }
 
     return (
-        <div className='container' style={style}>
+        <div className='container' style={{...style,'display': trigger.critical ? 'block': 'none'}}>
             <table className="table">
                 <thead>
                     <tr>

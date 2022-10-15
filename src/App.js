@@ -9,6 +9,7 @@ import Critical from './Components/Critical';
 import Customers from './Components/Customers';
 import Links from './Components/Links';
 import History from './Components/History';
+import Login from './Components/Login';
 import { Routes, Route} from 'react-router-dom'
 
 function App() {
@@ -18,14 +19,14 @@ function App() {
       <DataState>
         <header>
           <nav>
-            <Navbar />
-            <Sidebar />
+            {/* <Navbar /> */}
+            {/* <Sidebar /> */}
           </nav>
         </header>
         <section>
           <article>
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<Login />} />
               <Route path="/billing" element={<Billing />} /> {/*order book*/}
               <Route path="/products" element={<Products />} />
               <Route path="/critical" element={<Critical />} />

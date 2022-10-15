@@ -1,5 +1,6 @@
 import './Navbar.css';
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faLink, faBookmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -8,18 +9,14 @@ const Navbar = () => {
     <>
       <div className="navbar">
         <ul className="list-head">
-          <li>Shop <span>X</span> </li>
+          <li>Shop<span> X</span> </li>
           <li>
             <div className="more">
-                <div><FontAwesomeIcon icon={faHouse}/> <span className='px-1'>Home</span></div>
-                <div><FontAwesomeIcon icon={faLink}/> <span className='px-1'>Links</span></div>
-                <div><FontAwesomeIcon icon={faBookmark} /> <span className='px-1'>History</span></div>
+                <div><Link to={"/"}><FontAwesomeIcon icon={faHouse}/> <span>Home</span></Link></div>
+                <div><Link to={"/links"}><FontAwesomeIcon icon={faLink}/><span>Links</span></Link></div>
+                <div><Link to={"/history"}><FontAwesomeIcon icon={faBookmark} /><span>History</span></Link></div>
             </div>
           </li>
-          <li><div className="search">
-            <input type="text" placeholder='search' />
-            <button type='button' className='btn btn-primary'>Search</button>
-          </div></li>
         </ul>
       </div>
 

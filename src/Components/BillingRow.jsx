@@ -7,7 +7,7 @@ const BillingRow = ({ products, close, id, getTotal }) => {
     const refProductPrice = useRef()
     const refProductTaxableVal = useRef()
     const refProductTax = useRef()
-
+    // const id = useId()
     
 
     function ProductLookup(e, operation = 'default') {
@@ -33,7 +33,7 @@ const BillingRow = ({ products, close, id, getTotal }) => {
     }
 
     function closeEvent(e){
-        close(e.target.id)
+        // close(e.target.id)
         close(`row-${e.target.id}`)
     }
 

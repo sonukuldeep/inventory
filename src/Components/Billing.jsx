@@ -9,6 +9,7 @@ const Billing = () => {
     const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px', 'position': 'relative', 'display': 'none' }
     const spawnRowHere = useRef()
     const [count,setCount] = useState(0)
+    // const [randomId, setRandomId] = useState()
     const [productRow, addMoreProducts] = useState([])
     const refgtotal = useRef()
 
@@ -19,7 +20,6 @@ const Billing = () => {
         refgtotal.current.innerText = "Grand total:- " + gtotal.toFixed(2) + "/-" 
 
     }
-
 
     function close(rowIndex) {
         const removeRow = document.getElementById(rowIndex)

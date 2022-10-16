@@ -10,32 +10,44 @@ import Customers from './Components/Customers';
 import Links from './Components/Links';
 import History from './Components/History';
 import Login from './Components/Login';
-import { Routes, Route} from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import React, {useEffect} from 'react';
+
 
 function App() {
+  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    
+    navigate('/login')
+    
+  },[])
+  
+
 
   return (
     <>
       <DataState>
         <header>
           <nav>
-            {/* <Navbar /> */}
-            {/* <Sidebar /> */}
+            <Navbar />
+            <Sidebar />
           </nav>
         </header>
         <section>
           <article>
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/billing" element={<Billing />} /> {/*order book*/}
               <Route path="/products" element={<Products />} />
               <Route path="/critical" element={<Critical />} />
               <Route path="/customers" element={<Customers />} />
               <Route path="/links" element={<Links />} />
               <Route path="/history" element={<History />} />
-              <Route path="/logout" element={<h1 style={{position: 'absolute', top: '50%', left: '50%', transform:'translate(-50%,-50%)'}}>Thanks for visiting</h1>} />
+              <Route path="/logout" element={<h1 style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}>Thanks for visiting</h1>} />
             </Routes>
-            {/* <links/> */}
           </article>
         </section>
       </DataState>

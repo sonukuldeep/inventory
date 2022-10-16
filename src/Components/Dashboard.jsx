@@ -6,7 +6,7 @@ import DataContext from '../Context/DataContext'
 const Dashboard = () => {
     const customers = useContext(DataContext).customerData
     const products = useContext(DataContext).products
-    const trigger = useContext(DataContext).trigger
+    // const trigger = useContext(DataContext).trigger
     const sales = useContext(DataContext).sales
     const history = useContext(DataContext).history
     
@@ -15,7 +15,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <div style={{...style, 'display': (trigger.dashboard) ? 'grid' : 'none'}}>
+            <div style={style}>
                 <div className="card text-bg-success mb-3" >
                     <div className="card-header">Total sale</div>
                     <div className="container text-center">

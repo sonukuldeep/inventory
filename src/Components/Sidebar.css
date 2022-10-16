@@ -65,3 +65,12 @@
 	transition: color 0.3s;
 	
 }
+
+.sidebar .list-head .custom-btn {
+	align-items: center;
+	height: 45px;
+}
+
+.sidebar .list-head .custom-btn span{
+	padding-left: 10px;
+}

@@ -1,13 +1,17 @@
 import './Navbar.css';
-import React from 'react'
+import React, {useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faLink, faBookmark } from '@fortawesome/free-solid-svg-icons'
+import DataContext from '../Context/DataContext'
 
 const Navbar = () => {
+  const display = useContext(DataContext).trigger.navbar
+
+  
   return (
     <>
-      <div className="navbar">
+      <div className="navbar" style={{'display': display ? "flex" : "none"}}>
         <ul className="list-head">
           <li>Shop<span> X</span> </li>
           <li>

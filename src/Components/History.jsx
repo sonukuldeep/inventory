@@ -18,9 +18,9 @@ const History = () => {
                 </thead>
                 <tbody>
                     {history.map((item,index)=>{
-                        return (<tr>
-                            <td>{item.id}</td>
+                        return (<tr key={index}>
                             <td>{index+1}</td>
+                            <td>{item.id}</td>
                             <td>{item.item}</td>
                             <td>{item.date}</td>
                         </tr>)

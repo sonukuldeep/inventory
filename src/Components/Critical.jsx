@@ -1,18 +1,15 @@
 import React from 'react'
-import { useContext } from 'react'
-import DataContext from '../Context/DataContext'
 
 const Critical = () => {
-    const trigger = useContext(DataContext).trigger
 
     const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px' }
 
     return (
-        <div className='container' style={{...style,'display': trigger.critical ? 'block': 'none'}}>
+        <div className='container' style={style}>
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Serial</th>
                         <th scope="col">First</th>
                         <th scope="col">Last</th>
                         <th scope="col">Due Amount</th>

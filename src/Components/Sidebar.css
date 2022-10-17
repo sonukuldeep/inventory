@@ -40,11 +40,8 @@
 	border-top: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-.sidebar .list-head li:hover {
-	background-color: var(--color-fg-color);
-	
-}
 .sidebar .list-head li:hover, .sidebar .list-head li:hover a{
+	background-color: var(--color-fg-color);
 	color: skyblue;
 
 }
@@ -53,6 +50,12 @@
 	margin-top: auto;
 	border-top: 1px solid rgba(0, 0, 0, 0.5);
 	
+}
+
+.sidebar .list-head .active {
+	background-color: var(--color-fg-color);
+	color: skyblue;
+
 }
 
 .sidebar .list-head li a {

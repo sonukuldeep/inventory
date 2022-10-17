@@ -42,13 +42,19 @@
     align-items: center;
     transition: color 0.3s; 
     cursor: pointer;
+    color: white;
 }
 
-.navbar .list-head .more div:hover {
+.navbar .list-head .more div:hover, .navbar .list-head .more div:hover a {
     background-color: var(--color-fg-color);
     color: skyblue;
 }
 
+.navbar .list-head .more .active, .navbar .list-head .more .active a {
+    background-color: var(--color-fg-color);
+    color: skyblue;
+
+}
 
 .navbar .list-head .more a{
     width: 100%;
@@ -58,6 +64,8 @@
     align-items: center;
     text-decoration: none;
     color: white;
+    transition: color 0.3s; 
+
 }
 
 .navbar .list-head .more a span {

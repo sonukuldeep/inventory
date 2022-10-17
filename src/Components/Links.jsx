@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
 
 const Links = () => {
 const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px','position': 'relative' }

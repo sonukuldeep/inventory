@@ -4,12 +4,11 @@ import BillingRow from './BillingRow'
 
 
 const Billing = () => {
-    const trigger = useContext(DataContext).trigger
-    const products = useContext(DataContext).products
-    const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px', 'position': 'relative', 'display': 'none' }
+    
+    const {products} = useContext(DataContext)
+    const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px', 'position': 'relative' }
     const spawnRowHere = useRef()
     const [count,setCount] = useState(0)
-    // const [randomId, setRandomId] = useState()
     const [productRow, addMoreProducts] = useState([])
     const refgtotal = useRef()
 
@@ -40,7 +39,7 @@ const Billing = () => {
     
 
     return (
-        <div className='container' style={{...style,'display': (trigger.orderBook) ? 'block' : 'none'}}>
+        <div className='container' style={style}>
             <table className='table table-striped'>
                 <thead>
                     <tr>

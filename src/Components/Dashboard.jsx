@@ -4,12 +4,8 @@ import DataContext from '../Context/DataContext'
 
 
 const Dashboard = () => {
-    const customers = useContext(DataContext).customerData
-    const products = useContext(DataContext).products
-    // const trigger = useContext(DataContext).trigger
-    const sales = useContext(DataContext).sales
-    const history = useContext(DataContext).history
-    
+    const {customerData, products, sales, history} = useContext(DataContext)
+        
     const style = { 'display': 'grid', 'gridTemplateColumns': '1fr 1fr 1fr', 'width': '87%', 'marginLeft': '180px', 'marginTop': '50px', 'gap': '10px' }
     
 
@@ -44,7 +40,7 @@ const Dashboard = () => {
                     <div className="card-body">
                         <h5 className="card-title">Warning card title</h5>
                         <ul>
-                            {customers.map((customer,index)=>{return (<li key={index} className="card-text">{customer.name} has {customer.due}</li>)})}
+                            {customerData.map((customer,index)=>{return (<li key={index} className="card-text">{customer.name} has {customer.due}</li>)})}
                      
                         </ul>
                     </div>
@@ -61,7 +57,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="container" style={{ 'marginLeft': '180px','display': style.display }}>
+            <div className="container" style={{ 'marginLeft': '180px' }}>
                 <h3>Last few sales</h3>
 
                 <table className="table" style={{ 'color': '#fff', 'backgroundColor': '#37474f' }}>

@@ -4,23 +4,13 @@ import DisplayList from './DisplayList'
 import icon from '../Assets/Image/icon.gif'
 
 const Products = () => {
-    const data = useContext(DataContext)
-    const trigger = data.trigger
-    const products = data.products
-    const setProducts = data.setProducts
+    // const data = 
+    const {products, setProducts} = useContext(DataContext)
+    // const setProducts = data.setProducts
     const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px' }
     const [enableForm, setEnableDisable] = useState(false)
     const [editId, setEditId] = useState({ 'id': 0, 'display': 'none' })
-    // const display = 
-
-    // useEffect(() => {
-    //     let display;
-    //     if (trigger.products === true)
-    //         display = 'block'
-    //     else
-    //         display = 'none'
-    //     setStyle({ ...style, 'display': display })
-    // }, [trigger.products])
+    
 
     function checkDuplicateEntry(entry) {
         let indexNegativeIfNoDuplicateFound = -1
@@ -29,7 +19,6 @@ const Products = () => {
             if (Object.values(item).includes(Number(entry.id)) || Object.values(item).includes(entry.name)) {
                 indexNegativeIfNoDuplicateFound = index
             }
-
         })
         return indexNegativeIfNoDuplicateFound
     }
@@ -63,7 +52,6 @@ const Products = () => {
                 e.target[i].value = ""
             }
         } else {
-            // e.preventDefault()
             let id = products[editId.id].id
             let quantity = e.target.elements.quantity.value
             let product_name = e.target.elements.product_name.value
@@ -96,7 +84,7 @@ const Products = () => {
     }
 
     return (
-        <div className='container' style={{...style, 'display': (trigger.products) ? 'block' : 'none'}}>
+        <div className='container' style={style}>
 
             <button type='button' style={(editId['display'] === 'block') ? {'display': 'none'} : {'display': 'block'} } className='btn btn-warning' onClick={() => { setEnableDisable(!enableForm); }}>{enableForm ? 'Close' : 'Add more products'}</button>
             <form action="#" id="product-form" style={enableForm ? { 'display': 'block' } : { 'display': 'none' }} onSubmit={(e) => { formSubmit(e) }}>

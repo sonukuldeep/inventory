@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 
-const DisplayList = ({ item, index,edit }) => {
+const DisplayList = ({ item, edit }) => {
     
     return (
         <>

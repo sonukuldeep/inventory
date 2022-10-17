@@ -3,9 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 
-
-
-
 const CustomerList = ({ item, index, setCurrentIndex, setTempOnChangeContainer }) => {
     
     function setListValues(){

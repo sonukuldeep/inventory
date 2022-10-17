@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import DataContext from '../Context/DataContext'
 
 const History = () => {
-    const history = useContext(DataContext).history
+    const { history } = useContext(DataContext)
     const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px','position': 'relative' }
 
   return (

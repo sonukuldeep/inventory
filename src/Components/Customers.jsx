@@ -5,9 +5,9 @@ import CustomerList from './CustomerList'
 import icon from '../Assets/Image/icon.gif'
 
 const Customers = () => {
-    const trigger = useContext(DataContext).trigger
-    const customerData = useContext(DataContext).customerData
-    const setCustomerData = useContext(DataContext).setCustomerData
+    
+    const {customerData, setCustomerData} = useContext(DataContext)
+    // const setCustomerData = useContext(DataContext).setCustomerData
     const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px','position': 'relative' }
     const sortedCustomerData = [...customerData].sort(function (a, b) { return a.due < b.due })
     const [currentIndex, setCurrentIndex] = useState({'id': 1 , 'display': 'none'})
@@ -33,7 +33,7 @@ const Customers = () => {
 
     return (
 
-        <div className='container' style={{...style,'display': (trigger.customers) ? 'block' : 'none'}}>
+        <div className='container' style={style}>
             <img ref={btnRef} style={{'display': 'none','position':'absolute'}} src={icon} alt="" />
             <form action="#" style={{'display':currentIndex['display']}} onSubmit={(e) => { editCustomerEntry(e) }}>
                 <div className="row mb-3">

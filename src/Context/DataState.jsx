@@ -4,8 +4,7 @@ import DataContext from "./DataContext";
 
 const DataState = (props) => {
 
-    const navbarInitialState = { 'sidebar': false, 'navbar': false, 'home': false, 'links': false, 'history': false, 'dashboard': false, 'orderBook': true, 'products': true, 'critical': true, 'customers': true }
-    const [btnTrigger, setBtnTrigger] = useState({ ...navbarInitialState, 'dashboard': true })
+    const [display, setDisplay] = useState(false)
     const [products, setProducts] = useState(
         [{ 'id': 1, 'number': 15, 'name': 'baby oil', 'hsn': 1504, 'price': '50', 'rate': 5, 'description': '50 ml bottle', 'sold': '5' },
         { 'id': 2, 'number': 18, 'name': 'biscuits', 'hsn': 19059040, 'price': '20', 'rate': 18, 'description': '20 gm pkt', 'sold': '10' },
@@ -26,17 +25,17 @@ const DataState = (props) => {
             "yestarday": { "noOfItems": "10", "worth": "900" },
             "today": { "noOfItems": "50", "worth": "500" }
         })
-        
-        const [history, setHistory] = useState([
-            {'id': 255,'item':'baby food','date': '25/may'},
-            {'id': 125,'item':'chips','date': '24/may'},
-            {'id': 155,'item':'rice','date': '24/may'}
+
+    const [history, setHistory] = useState([
+        { 'id': 255, 'item': 'baby food', 'date': '25/may' },
+        { 'id': 125, 'item': 'chips', 'date': '24/may' },
+        { 'id': 155, 'item': 'rice', 'date': '24/may' }
     ])
 
 
 
     return (
-        <DataContext.Provider value={{ 'initialState': navbarInitialState, 'trigger': btnTrigger, 'setTrigger': setBtnTrigger, 'products': products, 'setProducts': setProducts, 'customerData': customerData, 'setCustomerData': setCustomerData, 'sales': sales, 'setSales': setSales, 'history': history, 'setHistory': setHistory }}>
+        <DataContext.Provider value={{ 'display': display, 'setDisplay': setDisplay, 'products': products, 'setProducts': setProducts, 'customerData': customerData, 'setCustomerData': setCustomerData, 'sales': sales, 'setSales': setSales, 'history': history, 'setHistory': setHistory }}>
             {props.children}
         </DataContext.Provider>
     )

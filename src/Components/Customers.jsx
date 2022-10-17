@@ -7,9 +7,8 @@ import icon from '../Assets/Image/icon.gif'
 const Customers = () => {
     
     const {customerData, setCustomerData} = useContext(DataContext)
-    // const setCustomerData = useContext(DataContext).setCustomerData
     const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px','position': 'relative' }
-    const sortedCustomerData = [...customerData].sort(function (a, b) { return a.due < b.due })
+    const sortedCustomerData = [...customerData].sort((a, b) => { return a.due < b.due })
     const [currentIndex, setCurrentIndex] = useState({'id': 1 , 'display': 'none'})
     const [tempOnChangeContainer, setTempOnChangeContainer] = useState({'name':'','due':'','phone': ''})
     const btnRef = useRef(null)

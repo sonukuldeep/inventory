@@ -12,7 +12,7 @@ import History from './Components/History';
 import Login from './Components/Login';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import React, { useEffect } from 'react';
-
+import Sales from './Components/Sales';
 
 
 function App() {
@@ -39,6 +39,7 @@ function App() {
         <section>
           <article>
             <Routes>
+              <Route path="/sales" element={<Sales />} />
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<Dashboard />} />
               <Route path="/billing" element={<Billing />} /> {/*order book*/}

@@ -9,7 +9,7 @@ const Navbar = () => {
   const {display} = useContext(DataContext)
   const pathname = window.location.pathname
   const navRef = useRef()
-  const navIndexing = {"/": 0, "/links" :1, "/history" : 2 }
+  const navIndexing = {"/sales": 0, "/links" :1, "/history" : 2 }
   const activeIndex = navIndexing[pathname]
 
   useEffect(()=>{
@@ -26,7 +26,7 @@ const Navbar = () => {
           <li>Shop<span> X</span> </li>
           <li>
             <div ref={navRef} className="more">
-                <div><Link to={"/"}><FontAwesomeIcon icon={faHouse}/> <span>Home</span></Link></div>
+                <div><Link to={"/sales"}><FontAwesomeIcon icon={faHouse}/> <span>Sales</span></Link></div>
                 <div><Link to={"/links"}><FontAwesomeIcon icon={faLink}/><span>Links</span></Link></div>
                 <div><Link to={"/history"}><FontAwesomeIcon icon={faBookmark} /><span>History</span></Link></div>
             </div>

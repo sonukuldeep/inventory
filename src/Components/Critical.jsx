@@ -5,7 +5,7 @@ const Critical = () => {
     const {products} = useContext(DataContext)
     const style = { 'width': '87%', 'marginLeft': '180px', 'marginTop': '30px' }
     const sortedProductsViaQuantity = [...products].sort((a,b)=> {return a.quantity > b.quantity})
-    const sortedProductsViaLastSold = [...products].sort((a,b)=> {return new Date(a.lastSold) > new Date(b.lastSold)})
+    const sortedProductsViaLastSold = [...products].sort((a,b)=> {return new Date(a.lastSold) < new Date(b.lastSold)})
     
     return (
         <>
@@ -22,7 +22,6 @@ const Critical = () => {
                 </thead>
                 <tbody>
                   {sortedProductsViaQuantity.map((product)=>{return  (<tr><td>{product.id}</td><td>{product.name}</td><td>{product.number}</td></tr>)})}  
-                    
                 </tbody>
             </table>
         </div>

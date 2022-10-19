@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
+
 const BillingRow = ({ products, close, id, getTotal }) => {
     const [total, setTotal] = useState({ 'taxableAmount': "", 'tax': "", "rate": "", 'total': "" })
     const refProductHsn = useRef()
@@ -7,7 +8,7 @@ const BillingRow = ({ products, close, id, getTotal }) => {
     const refProductPrice = useRef()
     const refProductTaxableVal = useRef()
     const refProductTax = useRef()
-    // const id = useId()
+    
     
 
     function ProductLookup(e, operation = 'default') {
